@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blebasafromont-playground
+  namespace: dev
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: blebasafromont-app
+  template:
+    metadata:
+      labels:
+        app: blebasafromont-app
+    spec:
+      containers:
+      - name: blebasafromont-container
+        image: wil42/playground:v1
+        ports:
+        - containerPort: 80

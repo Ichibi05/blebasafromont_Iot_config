@@ -1,0 +1,23 @@
+apiVersion: k3d.io/v1alpha5
+kind: Simple
+metadata:
+  name: p3-cluster
+servers: 1
+agents: 2
+image: rancher/k3s:v1.31.5-k3s1
+ports:
+  - port: 8888:80
+    nodeFilters:
+        - loadbalancer
+options:
+  k3d:
+    wait: true
+    timeout: "120s"
+  k3s:
+    extraArgs:
+      - arg: --tls-san=127.0.0.1
+        nodeFilters:
+          - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchContext: true

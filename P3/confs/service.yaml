@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: blebasafromont-service
+  namespace: dev
+spec:
+  selector:
+    app: blebasafromont-app
+  ports: 
+    - protocol: TCP
+      port: 8080
+      targetPort: 80
